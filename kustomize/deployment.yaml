@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otvaraj
+  labels:
+    app: otvaraj
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otvaraj
+  template:
+    metadata:
+      labels:
+        app: otvaraj
+    spec:
+      containers:
+        - name: otvaraj
+          image: otvaraj
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 100m
+            limits:
+              memory: 100Mi
+              cpu: 100m

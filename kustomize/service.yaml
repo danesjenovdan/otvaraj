@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: otvaraj
+spec:
+  selector:
+    app: otvaraj
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
