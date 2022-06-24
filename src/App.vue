@@ -6,12 +6,16 @@ import { ref } from 'vue'
 
 const showSidebar = ref(false)
 
+function hideSidebar() {
+  showSidebar.value = false
+}
+
 </script>
 
 <template>
   <div class="content-wrapper">
-    <Sidebar :show="showSidebar" />
-    <MapOtvaraj @show="showSidebar=true" />
+    <Sidebar v-if="showSidebar" v-click-outside="hideSidebar" />
+    <MapOtvaraj @show="showSidebar = true" />
     <!-- sabor
     vlada
     kucica

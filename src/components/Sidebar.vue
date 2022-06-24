@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="sidebar" v-if="show">
+  <div class="sidebar">
     <h1>Što i koliko radi tvoja zastupnik_ca?</h1>
     <p>Tijekom dvije pandemijske godine Sabor je prestao objavljivati poimenične rezultate glasanja, nema podataka o tome dolaze li zastupnici i zastupnice na posao u Sabor, koliko i kako sudjeluju na sjednicama radnih tijela i što tamo govore. Iznimno, ako predsjednik radnog tijela odluči da će sjednicu prenositi na YouTube kanalu Sabora, i ako je dvorana opremljena za video-prijenos, to će ipak ostati zabilježeno i dostupno za pregled na YouTube kanalu Sabora.</p>
     <h3>> Zašto bi nas trebale zanimati sjednice radnih tijela Sabora?</h3>
