@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 
 import "leaflet/dist/leaflet.css"
 import leaflet from "leaflet"
+import imgUrl from '../assets/icons/pin.svg'
 
 const showChurch = ref(false)
 
@@ -34,8 +35,25 @@ onMounted(() => {
     maxZoom: 20,
   }).addTo(map);
 
+  let mapIcon = leaflet.icon({
+    iconUrl: imgUrl,
+    iconSize: [60, 60]
+  })
+
+  // icon
+//   var icon = L.icon({
+//     iconUrl: 'leaf-green.png',
+//     shadowUrl: 'leaf-shadow.png',
+
+//     iconSize:     [38, 95], // size of the icon
+//     shadowSize:   [50, 64], // size of the shadow
+//     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+//     shadowAnchor: [4, 62],  // the same for the shadow
+//     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+// });
+
   // church
-  const crkva = leaflet.marker([45.816426862740336, 15.973645607777067]).addTo(map);
+  const crkva = leaflet.marker([45.816426862740336, 15.973645607777067], {icon: mapIcon}).addTo(map);
   crkva.on('click', log);
 
   // parliament
