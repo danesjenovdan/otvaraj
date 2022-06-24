@@ -1,21 +1,37 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import Sidebar from './components/Sidebar.vue'
+import MapOtvaraj from './components/MapOtvaraj.vue'
+
+import { ref } from 'vue'
+
+const showSidebar = ref(false)
+
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div class="content-wrapper">
+    <Sidebar :show="showSidebar" />
+    <MapOtvaraj @show="showSidebar=true" />
+    <!-- sabor
+    vlada
+    kucica
+    crkva 
+    izbor možnosti za akcijo
+    -->
+  </div>
 </template>
 
 <style>
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
