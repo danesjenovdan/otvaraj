@@ -3,7 +3,6 @@ import { ref, onMounted } from 'vue'
 
 import "leaflet/dist/leaflet.css"
 import leaflet from "leaflet"
-import imgUrl from '../assets/icons/pin.svg'
 import churchUrl from '../assets/icons/cerkev.svg'
 import checkpoint1Url from '../assets/icons/checkpoint-levo-zgoraj.svg'
 import checkpoint2Url from '../assets/icons/checkpoint-desno-zgoraj.svg'
@@ -21,14 +20,27 @@ const emit = defineEmits(['show'])
 //   msg: String
 // })
 
-function log() {
-  emit('show')
+function churchEvent() {
+  console.log('church')
+  emit('show', 'church')
+}
+
+function parliamentEvent() {
+  console.log('parla')
+  emit('show', 'parliament')
+}
+
+function governmentEvent() {
+  console.log('gov')
+  emit('show', 'government')
+}
+
+function policeEvent() {
+  console.log('police')
+  emit('show', 'police')
 }
 
 let map;
-
-
-
 
 onMounted(() => {
   map = leaflet.map('map', {
@@ -88,52 +100,38 @@ onMounted(() => {
   })
   // ---
 
-  // icon
-//   var icon = L.icon({
-//     iconUrl: 'leaf-green.png',
-//     shadowUrl: 'leaf-shadow.png',
-
-//     iconSize:     [38, 95], // size of the icon
-//     shadowSize:   [50, 64], // size of the shadow
-//     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-//     shadowAnchor: [4, 62],  // the same for the shadow
-//     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-// });
-
   // add icons to map
   const church = leaflet.marker([45.8164, 15.973645607777067], {icon: churchIcon}).addTo(map);
-  church.on('click', log);
+  church.on('click', churchEvent);
 
   const parliament = leaflet.marker([45.81632, 15.97438], {icon: parliamentIcon}).addTo(map);
-  church.on('click', log);
+  parliament.on('click', parliamentEvent);
 
   const vlada = leaflet.marker([45.81637, 15.97296], {icon: vladaIcon}).addTo(map);
-  church.on('click', log);
+  vlada.on('click', governmentEvent);
 
   const fence1 = leaflet.marker([45.81668, 15.973659769227755], {icon: fence1Icon}).addTo(map);
-  church.on('click', log);
+  fence1.on('click', policeEvent);
 
   const fence2 = leaflet.marker([45.81598, 15.97322], {icon: fence2Icon}).addTo(map);
-  church.on('click', log);
+  fence2.on('click', policeEvent);
 
   const checkpoint1 = leaflet.marker([45.81671, 15.97335], {icon: checkpoint1Icon, zIndexOffset: -10}).addTo(map);
-  church.on('click', log);
+  checkpoint1.on('click', policeEvent);
 
   const checkpoint2 = leaflet.marker([45.816675, 15.97398], {icon: checkpoint2Icon, zIndexOffset: -10}).addTo(map);
-  church.on('click', log);
+  checkpoint2.on('click', policeEvent);
 
   const checkpoint3 = leaflet.marker([45.81597, 15.97353], {icon: checkpoint3Icon, zIndexOffset: -10}).addTo(map);
-  church.on('click', log);
+  checkpoint3.on('click', policeEvent);
 
-  // vlada
   const latlngs1 = [[45.816717, 15.972668], [45.81666, 15.97333], [45.81602, 15.97323], [45.81607, 15.97252]];
   const vladaPoly = leaflet.polygon(latlngs1, {color: 'red'}).addTo(map);
-  vladaPoly.on('click', log);
+  vladaPoly.on('click', governmentEvent);
 
-  // sabor
   const latlngs2 = [[45.81663, 15.97405], [45.81662, 15.97481], [45.81585, 15.97475], [45.81594, 15.97393]];
-  leaflet.polygon(latlngs2, {color: 'blue'}).addTo(map);
-
+  const parliamentPoly = leaflet.polygon(latlngs2, {color: 'blue'}).addTo(map);
+  parliamentPoly.on('click', parliamentEvent);
 
 });
 
