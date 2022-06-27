@@ -8,7 +8,6 @@ const sidebar = ref(false)
 const opened = ref('')
 
 function showSidebar(clicked) {
-  console.log('show', clicked)
   sidebar.value = true
   opened.value = clicked
 }
@@ -22,7 +21,7 @@ function hideSidebar() {
 
 <template>
   <div class="content-wrapper">
-    <Sidebar v-if="sidebar" v-click-outside="hideSidebar" :show-content-for="opened" />
+    <Sidebar v-click-outside="hideSidebar" :show="sidebar" :show-content-for="opened" />
     <MapOtvaraj @show="showSidebar" />
   </div>
 </template>
@@ -37,7 +36,9 @@ html, body {
 
 #app {
   /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 </style>

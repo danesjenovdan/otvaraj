@@ -12,13 +12,7 @@ import fence2Url from '../assets/icons/ograja-spodaj.svg'
 import parliamentUrl from '../assets/icons/parlament.svg'
 import vladaUrl from '../assets/icons/vlada.svg'
 
-const showChurch = ref(false)
-
 const emit = defineEmits(['show'])
-
-// defineProps({
-//   msg: String
-// })
 
 function churchEvent() {
   console.log('church')
@@ -126,11 +120,11 @@ onMounted(() => {
   checkpoint3.on('click', policeEvent);
 
   const latlngs1 = [[45.816717, 15.972668], [45.81666, 15.97333], [45.81602, 15.97323], [45.81607, 15.97252]];
-  const vladaPoly = leaflet.polygon(latlngs1, {color: 'red'}).addTo(map);
+  const vladaPoly = leaflet.polygon(latlngs1, {color: '#258498'}).addTo(map);
   vladaPoly.on('click', governmentEvent);
 
   const latlngs2 = [[45.81663, 15.97405], [45.81662, 15.97481], [45.81585, 15.97475], [45.81594, 15.97393]];
-  const parliamentPoly = leaflet.polygon(latlngs2, {color: 'blue'}).addTo(map);
+  const parliamentPoly = leaflet.polygon(latlngs2, {color: '#258498'}).addTo(map);
   parliamentPoly.on('click', parliamentEvent);
 
 });
