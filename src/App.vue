@@ -4,24 +4,25 @@ import MapOtvaraj from './components/MapOtvaraj.vue'
 
 import { ref } from 'vue'
 
-const showSidebar = ref(false)
+const sidebar = ref(false)
+const opened = ref('')
+
+function showSidebar(clicked) {
+  sidebar.value = true
+  opened.value = clicked
+}
 
 function hideSidebar() {
-  showSidebar.value = false
+  sidebar.value = false
+  opened.value = ''
 }
 
 </script>
 
 <template>
   <div class="content-wrapper">
-    <Sidebar v-if="showSidebar" v-click-outside="hideSidebar" />
-    <MapOtvaraj @show="showSidebar = true" />
-    <!-- sabor
-    vlada
-    kucica
-    crkva 
-    izbor možnosti za akcijo
-    -->
+    <Sidebar v-click-outside="hideSidebar" :show="sidebar" :show-content-for="opened" />
+    <MapOtvaraj @show="showSidebar" />
   </div>
 </template>
 
@@ -35,7 +36,9 @@ html, body {
 
 #app {
   /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 </style>
