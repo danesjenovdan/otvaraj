@@ -8,4 +8,4 @@ resources:
 images:
   - name: otvaraj
     newName: rg.fr-par.scw.cloud/djnd/otvaraj
-    newTag: '5ee7fb556fdb8d2f9147f2ea6579e4f41d53d013'
+    newTag: 'fa868c6baf021aba2ccb17d7d732c8bc56305a3e'
