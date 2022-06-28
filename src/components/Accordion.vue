@@ -66,4 +66,9 @@ p {
   margin-top: 0;
 }
 
+hr {
+  border-top: #a6a6a6;
+  background-color: #a6a6a6;
+}
+
 </style>
