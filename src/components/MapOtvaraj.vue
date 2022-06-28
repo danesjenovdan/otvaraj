@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 import "leaflet/dist/leaflet.css"
 import leaflet from "leaflet"
@@ -14,36 +14,38 @@ import vladaUrl from '../assets/icons/vlada.svg'
 
 const emit = defineEmits(['show'])
 
+const screenWidth = ref(window.innerWidth);
+const desktop = computed(() => screenWidth.value > 992);
+
 function churchEvent() {
-  console.log('church')
   emit('show', 'church')
 }
 
 function parliamentEvent() {
-  console.log('parla')
   emit('show', 'parliament')
 }
 
 function governmentEvent() {
-  console.log('gov')
   emit('show', 'government')
 }
 
 function policeEvent() {
-  console.log('police')
   emit('show', 'police')
 }
 
 let map;
 
 onMounted(() => {
+  const zoom = desktop.value ? 19 : 18
+
   map = leaflet.map('map', {
     zoomControl: false,
     scrollWheelZoom: false
-  }).setView([45.816272, 15.973636], 19);
+  }).setView([45.816272, 15.973636], zoom);
 
   // disable moving the map
   map.dragging.disable();
+  map.doubleClickZoom.disable();
 
   // add map data
   leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -52,56 +54,61 @@ onMounted(() => {
   }).addTo(map);
   // ---
 
+  const decreaseBy = desktop.value ? 1 : 2
+
   // create icons
   let churchIcon = leaflet.icon({
     iconUrl: churchUrl,
-    iconSize: [220, 220]
+    iconSize: [220/decreaseBy, 220/decreaseBy]
   })
 
   let checkpoint1Icon = leaflet.icon({
     iconUrl: checkpoint1Url,
-    iconSize: [60, 60]
+    iconSize: [60/decreaseBy, 60/decreaseBy]
   })
 
   let checkpoint2Icon = leaflet.icon({
     iconUrl: checkpoint2Url,
-    iconSize: [60, 60]
+    iconSize: [60/decreaseBy, 60/decreaseBy]
   })
 
   let checkpoint3Icon = leaflet.icon({
     iconUrl: checkpoint3Url,
-    iconSize: [60, 60]
+    iconSize: [60/decreaseBy, 60/decreaseBy]
   })
   
   let fence1Icon = leaflet.icon({
     iconUrl: fence1Url,
-    iconSize: [350, 100]
+    iconSize: [350/decreaseBy, 100/decreaseBy]
   })
 
   let fence2Icon = leaflet.icon({
     iconUrl: fence2Url,
-    iconSize: [550, 200]
+    iconSize: [550/decreaseBy, 200/decreaseBy]
   })
 
   let parliamentIcon = leaflet.icon({
     iconUrl: parliamentUrl,
-    iconSize: [190, 190]
+    iconSize: [190/decreaseBy, 190/decreaseBy]
   })
 
   let vladaIcon = leaflet.icon({
     iconUrl: vladaUrl,
-    iconSize: [200, 150]
+    iconSize: [200/decreaseBy, 150/decreaseBy]
   })
   // ---
 
   // add icons to map
   const church = leaflet.marker([45.8164, 15.973645607777067], {icon: churchIcon}).addTo(map);
+  // church.bindTooltip("Otvaraj!").openTooltip();
   church.on('click', churchEvent);
 
   const parliament = leaflet.marker([45.81632, 15.97438], {icon: parliamentIcon}).addTo(map);
+  // parliament.bindTooltip("Što i koliko radi tvoja zastupnik_ca?").openTooltip();
   parliament.on('click', parliamentEvent);
 
   const vlada = leaflet.marker([45.81637, 15.97296], {icon: vladaIcon}).addTo(map);
+  // vlada.bindTooltip("Jel’ otvoreno?").openTooltip();
   vlada.on('click', governmentEvent);
 
   const fence1 = leaflet.marker([45.81668, 15.973659769227755], {icon: fence1Icon}).addTo(map);
@@ -133,7 +140,6 @@ onMounted(() => {
 
 <template>
   <div id="map"></div>
-
 </template>
 
 <style scoped>
