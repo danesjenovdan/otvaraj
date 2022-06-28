@@ -5,6 +5,7 @@ import MapOtvaraj from './components/MapOtvaraj.vue'
 import { ref } from 'vue'
 
 const sidebar = ref(false)
+const walls = ref(true)
 const opened = ref('')
 
 function showSidebar(clicked) {
@@ -17,12 +18,25 @@ function hideSidebar() {
   opened.value = ''
 }
 
+function hideWalls() {
+  walls.value = false
+}
+
 </script>
 
 <template>
   <div class="content-wrapper">
-    <Sidebar v-click-outside="hideSidebar" :show="sidebar" :show-content-for="opened" @hide="hideSidebar" />
-    <MapOtvaraj @show="showSidebar" />
+    <Sidebar 
+      v-click-outside="hideSidebar" 
+      :show="sidebar" 
+      :show-content-for="opened" 
+      @hide="hideSidebar"
+      @hide-walls="hideWalls"
+    />
+    <MapOtvaraj
+      :walls="walls"
+      @show="showSidebar" 
+    />
   </div>
 </template>
 
