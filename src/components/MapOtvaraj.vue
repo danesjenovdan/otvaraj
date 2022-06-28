@@ -117,6 +117,7 @@ onMounted(() => {
   // disable moving the map
   map.value.dragging.disable();
   map.value.doubleClickZoom.disable();
+  map.value.touchZoom.disable();
 
   // add map data
   leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
