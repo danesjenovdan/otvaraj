@@ -174,27 +174,32 @@ button {
   border: 3px solid #258498;
   background-color: white;
   color: #258498;
-  font-size: 24px;
+  font-size: 18px;
   font-family: 'Archivo', sans-serif;
   font-weight: 600;
-  line-height: 25px;
+  line-height: 20px;
   padding: 12px 0;
-  width: 150px;
+  width: 120px;
   display: inline-flex;
   justify-content: center;
   text-decoration: none;
-  margin: 15px 0;
+  margin-bottom: 15px;
   display: inline-block;
   cursor: pointer;
 }
 
 button.link-button {
-  width: 150px;
+  width: 120px;
+  font-size: 18px;
+  line-height: 20px;
+  margin-top: 0;
 }
 
 @media (min-width: 992px) {
   button,
   button.link-button {
+    font-size: 24px;
+    line-height: 25px;
     width: 170px;
   }
 }
