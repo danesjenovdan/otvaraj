@@ -61,8 +61,8 @@ h3 {
 
 p {
   font-weight: 300;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 16px;
+  line-height: 24px;
   margin-top: 0;
 }
 
