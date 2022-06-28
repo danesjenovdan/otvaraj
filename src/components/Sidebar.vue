@@ -7,11 +7,12 @@ defineProps({
   showContentFor: String
 })
 
+const emit = defineEmits(['hide'])
+
 const otvaraj = ref(false)
 const sendMessage = ref(false)
 
 function chooseAction(action) {
-  console.log('Acction', action)
   otvaraj.value = true
   sendMessage.value = action
 }
@@ -20,6 +21,7 @@ function chooseAction(action) {
 
 <template>
   <div class="sidebar" :class="{ 'show': show }">
+    <div @click="emit('hide')" class="mobile-collapse-line"><span></span></div>
     <img alt="Parlametar logo" src="../assets/logo-parlameter.png" />
     <div v-if="showContentFor === 'parliament'">
       <h1>Što i koliko radi tvoja zastupnik_ca?</h1>
@@ -95,23 +97,54 @@ function chooseAction(action) {
 
 <style scoped>
 .sidebar {
-  left: -430px;
+  bottom: -100vh;
   position: absolute;
   z-index: 1000;
   background-color: white;
-  /* border-right: 1px solid black; */
-  width: 430px;
-  height: 100%;
-  min-height: 100%;
+  width: 100vw;
+  height: 90%;
+  /* min-height: 100%; */
   box-sizing: border-box;
   overflow-y: scroll;
-  padding: 28px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  padding: 10px 28px 28px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   transition: all 0.5s ease;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .sidebar.show {
   left: 0;
+  bottom: 0;
+}
+
+.mobile-collapse-line {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.mobile-collapse-line span {
+  height: 3px;
+  width: 20px;
+  background-color: #a6a6a6;
+  border-radius: 2px;
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    width: 430px;
+    left: -430px;
+    bottom: 0;
+    padding: 28px;
+    height: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  .mobile-collapse-line {
+    display: none;
+  }
 }
 
 h1 {

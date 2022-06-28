@@ -21,7 +21,7 @@ function hideSidebar() {
 
 <template>
   <div class="content-wrapper">
-    <Sidebar v-click-outside="hideSidebar" :show="sidebar" :show-content-for="opened" />
+    <Sidebar v-click-outside="hideSidebar" :show="sidebar" :show-content-for="opened" @hide="hideSidebar" />
     <MapOtvaraj @show="showSidebar" />
   </div>
 </template>
@@ -31,11 +31,10 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 #app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
