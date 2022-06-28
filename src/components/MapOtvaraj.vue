@@ -128,7 +128,7 @@ onMounted(() => {
 
   // add icons to map
   const church = leaflet.marker([45.8164, 15.973645607777067], {icon: churchIcon.value}).addTo(map.value);
-  // church.bindTooltip("Otvaraj!").openTooltip();
+  // church.bindTooltip("Otvaraj!", { direction: 'bottom', offset: [0, 120] }).openTooltip();
   church.on('click', churchEvent);
 
   const parliament = leaflet.marker([45.81632, 15.97438], {icon: parliamentIcon.value}).addTo(map.value);
