@@ -26,7 +26,7 @@ function hideWalls() {
 <template>
   <div class="sidebar" :class="{ 'show': show }">
     <div @click="emit('hide')" class="mobile-collapse-line"><span></span></div>
-    <img alt="Parlametar logo" src="../assets/logo-parlameter.png" />
+    <img alt="Parlametar logo" class="parlametar-logo" src="../assets/parlametar_logo.svg" />
     <div v-if="showContentFor === 'parliament'">
       <h1>Što i koliko radi tvoja zastupnik_ca?</h1>
       <p>Tijekom dvije pandemijske godine Sabor je prestao objavljivati poimenične rezultate glasanja, nema podataka o tome dolaze li zastupnici i zastupnice na posao u Sabor, koliko i kako sudjeluju na sjednicama radnih tijela i što tamo govore. Iznimno, ako predsjednik radnog tijela odluči da će sjednicu prenositi na YouTube kanalu Sabora, i ako je dvorana opremljena za video-prijenos, to će ipak ostati zabilježeno i dostupno za pregled na YouTube kanalu Sabora.</p>
@@ -218,6 +218,10 @@ button.link-button {
 
 .link-button.wide {
   width: 260px;
+}
+
+.parlametar-logo {
+  max-width: 100px;
 }
 
 </style>
