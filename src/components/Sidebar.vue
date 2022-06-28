@@ -100,7 +100,7 @@ function hideWalls() {
 .sidebar {
   bottom: -100vh;
   position: absolute;
-  z-index: 1000;
+  z-index: 1001;
   background-color: white;
   width: 100vw;
   height: 90%;
@@ -179,7 +179,7 @@ button {
   font-weight: 600;
   line-height: 25px;
   padding: 12px 0;
-  width: 170px;
+  width: 150px;
   display: inline-flex;
   justify-content: center;
   text-decoration: none;
@@ -189,7 +189,14 @@ button {
 }
 
 button.link-button {
-  width: 170px;
+  width: 150px;
+}
+
+@media (min-width: 992px) {
+  button,
+  button.link-button {
+    width: 170px;
+  }
 }
 
 .link-button {
