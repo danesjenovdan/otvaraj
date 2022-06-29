@@ -108,8 +108,7 @@ onMounted(() => {
   const zoom = desktop.value ? 19 : 18
 
   map.value = leaflet.map('map', {
-    zoomControl: false,
-    scrollWheelZoom: false
+    zoomControl: false
   });
 
   map.value.setView([45.816272, 15.973636], zoom);
@@ -118,6 +117,10 @@ onMounted(() => {
   map.value.dragging.disable();
   map.value.doubleClickZoom.disable();
   map.value.touchZoom.disable();
+  map.value.scrollWheelZoom.disable();
+  map.value.boxZoom.disable();
+  map.value.keyboard.disable();
+  if (map.value.tap) map.value.tap.disable();
 
   // add map data
   leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
