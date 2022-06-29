@@ -15,7 +15,7 @@ const hideAccordionBody = ref(true)
     <div class="accordion-header" @click="hideAccordionBody = !hideAccordionBody">
       <h3>{{ headerText }}</h3>
       <div>
-        <img alt="open/close arrow" src="../assets/up-arrow.png" :class="{ 'rotate': !hideAccordionBody }" />
+        <img alt="open/close arrow" src="../assets/noun-arrow-up.svg" class="arrow-up" :class="{ 'rotate': hideAccordionBody }" />
       </div>
     </div>
     <div class="accordion-body" :class="{ 'hide': hideAccordionBody }">
@@ -52,6 +52,10 @@ const hideAccordionBody = ref(true)
 
 .rotate {
   transform: rotate(180deg);
+}
+
+.arrow-up {
+  width: 42px;
 }
 
 h3 {
