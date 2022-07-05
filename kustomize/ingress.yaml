@@ -9,9 +9,20 @@ spec:
   tls:
     - hosts:
         - otvaraj.lb.djnd.si
+        - otvaraj.parlametar.hr
       secretName: otvaraj-tls
   rules:
     - host: otvaraj.lb.djnd.si
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: otvaraj
+                port:
+                  number: 80
+    - host: otvaraj.parlametar.hr
       http:
         paths:
           - path: /
