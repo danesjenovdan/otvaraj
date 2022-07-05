@@ -119,12 +119,13 @@ watch(() => props.walls, (val, prevVal) => {
 
 onMounted(() => {
   const zoom = desktop.value ? 19 : 18
+  const mapCoordinates = desktop.value ? [45.81627, 15.97330] : [45.81640, 15.97365]
 
   map.value = leaflet.map('map', {
     zoomControl: false
   });
 
-  map.value.setView([45.816272, 15.973636], zoom);
+  map.value.setView(mapCoordinates, zoom);
 
   // disable moving the map
   map.value.dragging.disable();
