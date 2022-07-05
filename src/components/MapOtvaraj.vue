@@ -18,8 +18,8 @@ const props = defineProps({
 
 const emit = defineEmits(['show'])
 
-const screenWidth = ref(window.innerWidth);
-const desktop = computed(() => screenWidth.value > 992);
+const screenWidth = ref(window.innerWidth)
+const desktop = computed(() => screenWidth.value > 992)
 
 // events
 function churchEvent() {
@@ -77,30 +77,43 @@ const fence2Icon = ref(leaflet.icon({
 
 const parliamentIcon = ref(leaflet.icon({
   iconUrl: parliamentUrl,
-  iconSize: [190/decreaseBy, 190/decreaseBy]
+  iconSize: [220/decreaseBy, 220/decreaseBy]
 }))
 
 const vladaIcon = ref(leaflet.icon({
   iconUrl: vladaUrl,
-  iconSize: [200/decreaseBy, 150/decreaseBy]
+  iconSize: [220/decreaseBy, 220/decreaseBy]
 }))
 // ---
 
-const checkpoint1 = ref(leaflet.marker([45.81671, 15.97335], {icon: checkpoint1Icon.value, zIndexOffset: -10}));
-const checkpoint2 = ref(leaflet.marker([45.816675, 15.97398], {icon: checkpoint2Icon.value, zIndexOffset: -10}));
-const checkpoint3 = ref(leaflet.marker([45.81597, 15.97353], {icon: checkpoint3Icon.value, zIndexOffset: -10}));
+const checkpoint1 = ref(leaflet.marker([45.81671, 15.97335], {icon: checkpoint1Icon.value, zIndexOffset: -10}))
+const checkpoint2 = ref(leaflet.marker([45.816675, 15.97398], {icon: checkpoint2Icon.value, zIndexOffset: -10}))
+const checkpoint3 = ref(leaflet.marker([45.81597, 15.97353], {icon: checkpoint3Icon.value, zIndexOffset: -10}))
 
-const fence1 = ref(leaflet.marker([45.81668, 15.973659769227755], {icon: fence1Icon.value}));
-const fence2 = ref(leaflet.marker([45.81598, 15.97322], {icon: fence2Icon.value}));
+const fence1 = ref(leaflet.marker([45.81668, 15.973659769227755], {icon: fence1Icon.value}))
+const fence2 = ref(leaflet.marker([45.81598, 15.97322], {icon: fence2Icon.value}))
 
 watch(() => props.walls, (val, prevVal) => {
   if (!val) {
-    checkpoint1.value.remove();
-    checkpoint2.value.remove();
-    checkpoint3.value.remove();
 
-    fence1.value.remove();
-    fence2.value.remove();
+    leaflet.DomUtil.addClass(checkpoint1.value._icon, "leaflet-marker-hidden")
+    leaflet.DomUtil.addClass(checkpoint2.value._icon, "leaflet-marker-hidden")
+    leaflet.DomUtil.addClass(checkpoint3.value._icon, "leaflet-marker-hidden")
+    leaflet.DomUtil.addClass(fence1.value._icon, "leaflet-marker-hidden")
+    leaflet.DomUtil.addClass(fence2.value._icon, "leaflet-marker-hidden")
+
+    const mapElement = document.getElementById('map')
+
+    leaflet.DomUtil.addClass(mapElement, "shake")
+
+    setTimeout(() => {
+      checkpoint1.value.remove()
+      checkpoint2.value.remove()
+      checkpoint3.value.remove()
+
+      fence1.value.remove()
+      fence2.value.remove()
+    }, 2000)
   }
 })
 
@@ -131,7 +144,7 @@ onMounted(() => {
 
 
   // add icons to map
-  const church = leaflet.marker([45.8164, 15.973645607777067], {icon: churchIcon.value}).addTo(map.value);
+  const church = leaflet.marker([45.81637, 15.97365], {icon: churchIcon.value}).addTo(map.value);
   // church.bindTooltip("Otvaraj!", { direction: 'bottom', offset: [0, 120] }).openTooltip();
   church.on('click', churchEvent);
 
@@ -139,7 +152,7 @@ onMounted(() => {
   // parliament.bindTooltip("Što i koliko radi tvoja zastupnik_ca?").openTooltip();
   parliament.on('click', parliamentEvent);
 
-  const vlada = leaflet.marker([45.81637, 15.97296], {icon: vladaIcon.value}).addTo(map.value);
+  const vlada = leaflet.marker([45.81642, 15.97291], {icon: vladaIcon.value}).addTo(map.value);
   // vlada.bindTooltip("Jel’ otvoreno?").openTooltip();
   vlada.on('click', governmentEvent);
 
@@ -174,10 +187,37 @@ onMounted(() => {
   <div id="map"></div>
 </template>
 
-<style scoped>
+<style>
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
 #map {
   height: 100vh;
   width: 100%;
   max-width: 100%;
+}
+
+#map.shake {
+  animation: shake 0.5s; 
+  animation-iteration-count: 4;  
+}
+
+.leaflet-marker-icon {
+  transition: opacity 2s ease-out;
+}
+
+.leaflet-marker-hidden {
+  opacity: 0;
 }
 </style>
