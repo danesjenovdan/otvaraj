@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar.vue'
 import MapOtvaraj from './components/MapOtvaraj.vue'
 
 import { ref } from 'vue'
+import WelcomeText from './components/WelcomeText.vue';
 
 const sidebar = ref(false)
 const walls = ref(true)
@@ -26,6 +27,7 @@ function hideWalls() {
 
 <template>
   <div class="content-wrapper">
+    <WelcomeText />
     <Sidebar 
       v-click-outside="hideSidebar" 
       :show="sidebar" 
