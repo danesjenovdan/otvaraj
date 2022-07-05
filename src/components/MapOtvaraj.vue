@@ -86,12 +86,30 @@ const vladaIcon = ref(leaflet.icon({
 }))
 // ---
 
-const checkpoint1 = ref(leaflet.marker([45.81671, 15.97335], {icon: checkpoint1Icon.value, zIndexOffset: -10}))
-const checkpoint2 = ref(leaflet.marker([45.816675, 15.97398], {icon: checkpoint2Icon.value, zIndexOffset: -10}))
-const checkpoint3 = ref(leaflet.marker([45.81597, 15.97353], {icon: checkpoint3Icon.value, zIndexOffset: -10}))
+const checkpoint1 = ref(leaflet.marker([45.81671, 15.97335], {
+  icon: checkpoint1Icon.value, 
+  zIndexOffset: -10,
+  alt: "Policijske stražarnice"
+}))
+const checkpoint2 = ref(leaflet.marker([45.816675, 15.97398], {
+  icon: checkpoint2Icon.value, 
+  zIndexOffset: -10,
+  alt: "Policijske stražarnice"
+}))
+const checkpoint3 = ref(leaflet.marker([45.81597, 15.97353], {
+  icon: checkpoint3Icon.value, 
+  zIndexOffset: -10,
+  alt: "Policijske stražarnice"
+}))
 
-const fence1 = ref(leaflet.marker([45.81668, 15.973659769227755], {icon: fence1Icon.value}))
-const fence2 = ref(leaflet.marker([45.81598, 15.97322], {icon: fence2Icon.value}))
+const fence1 = ref(leaflet.marker([45.81668, 15.973659769227755], {
+  icon: fence1Icon.value,
+  alt: "Barikade oko Markovog trga"
+}))
+const fence2 = ref(leaflet.marker([45.81598, 15.97322], {
+  icon: fence2Icon.value,
+  alt: "Barikade oko Markovog trga"
+}))
 
 watch(() => props.walls, (val, prevVal) => {
   if (!val) {
@@ -145,16 +163,22 @@ onMounted(() => {
 
 
   // add icons to map
-  const church = leaflet.marker([45.81637, 15.97365], {icon: churchIcon.value}).addTo(map.value);
-  // church.bindTooltip("Otvaraj!", { direction: 'bottom', offset: [0, 120] }).openTooltip();
+  const church = leaflet.marker([45.81637, 15.97365], {
+    icon: churchIcon.value,
+    alt: "Markov trg s natpisom Otvaraj!"
+  }).addTo(map.value);
   church.on('click', churchEvent);
 
-  const parliament = leaflet.marker([45.81632, 15.97438], {icon: parliamentIcon.value}).addTo(map.value);
-  // parliament.bindTooltip("Što i koliko radi tvoja zastupnik_ca?").openTooltip();
+  const parliament = leaflet.marker([45.81632, 15.97438], {
+    icon: parliamentIcon.value, 
+    alt: "Zgrada Sabora s natpisom Gdje su svi?"
+  }).addTo(map.value);
   parliament.on('click', parliamentEvent);
 
-  const vlada = leaflet.marker([45.81642, 15.97291], {icon: vladaIcon.value}).addTo(map.value);
-  // vlada.bindTooltip("Jel’ otvoreno?").openTooltip();
+  const vlada = leaflet.marker([45.81642, 15.97291], {
+    icon: vladaIcon.value,
+    alt: "Zgrada Vlade s natpisom Jel' otvoreno?"
+  }).addTo(map.value);
   vlada.on('click', governmentEvent);
 
   fence1.value.addTo(map.value);
