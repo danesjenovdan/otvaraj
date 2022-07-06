@@ -55,7 +55,7 @@ function hideWallsVlada(e) {
     <div @click="emit('hide')" class="mobile-collapse-line"><span></span></div>
     <img alt="Parlametar logo" class="parlametar-logo" src="../assets/parlametar_logo.svg" />
     <div v-if="showContentFor === 'parliament'">
-      <h1>Gdje su svi</h1>
+      <h1>Gdje su svi?</h1>
       <p>Tijekom dvije pandemijske godine Sabor nije objavljivao poimenične rezultate glasanja, niti podatke o tome dolaze li zastupnici i zastupnice na posao u Sabor. Ni danas ne znamo koliko i kako zastupnice sudjeluju na sjednicama radnih tijela i što tamo govore. Iznimno, ako predsjednik radnog tijela odluči da će sjednicu prenositi na YouTube kanalu Sabora, i ako je dvorana opremljena za video-prijenos, to će ipak ostati zabilježeno i dostupno za pregled na YouTube kanalu Sabora.</p>
       <hr />
       <Accordion 
