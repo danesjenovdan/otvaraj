@@ -56,7 +56,7 @@ function hideWallsVlada(e) {
     <img alt="Parlametar logo" class="parlametar-logo" src="../assets/parlametar_logo.svg" />
     <div v-if="showContentFor === 'parliament'">
       <h1>Gdje su svi</h1>
-      <p>Tijekom dvije pandemijske godine Sabor nije objavljivao poimenične rezultate glasanja, niti podatke o tome dolaze li zastupnici i zastupnice na posao u Sabor, Ni danas ne znamo, koliko i kako zastupnice sudjeluju na sjednicama radnih tijela i što tamo govore. Iznimno, ako predsjednik radnog tijela odluči da će sjednicu prenositi na YouTube kanalu Sabora, i ako je dvorana opremljena za video-prijenos, to će ipak ostati zabilježeno i dostupno za pregled na YouTube kanalu Sabora.</p>
+      <p>Tijekom dvije pandemijske godine Sabor nije objavljivao poimenične rezultate glasanja, niti podatke o tome dolaze li zastupnici i zastupnice na posao u Sabor. Ni danas ne znamo koliko i kako zastupnice sudjeluju na sjednicama radnih tijela i što tamo govore. Iznimno, ako predsjednik radnog tijela odluči da će sjednicu prenositi na YouTube kanalu Sabora, i ako je dvorana opremljena za video-prijenos, to će ipak ostati zabilježeno i dostupno za pregled na YouTube kanalu Sabora.</p>
       <hr />
       <Accordion 
         :header-text="'Zašto bi nas trebale zanimati sjednice radnih tijela Sabora?'" 
@@ -96,7 +96,7 @@ function hideWallsVlada(e) {
     <div v-if="showContentFor === 'church'">
       <div v-if="!otvaraj">
         <h1>Otvaraj!</h1>
-        <p>Gong poziva Vladu i Sabor da razmotre naše preporuke i otvore se prema javnosti! Tražimo da se Vlada i Sabor otvore svoj rad javnosti i tako rade na izgradnji i očuvanju svog političkog integriteta kako bi vratili povjerenje građanki i građana u institucije.</p>
+        <p>Gong poziva Vladu i Sabor da razmotre naše preporuke i otvore se prema javnosti! Tražimo da Vlada i Sabor otvore svoj rad javnosti i tako rade na izgradnji i očuvanju svog političkog integriteta kako bi vratili povjerenje građanki i građana u institucije.</p>
         <p>Vrijeme je da:</p>
         <ul>
           <li>maknete barikade s Markova trga</li>
